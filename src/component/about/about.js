@@ -8,7 +8,7 @@ const About=()=>{
     return(
         <div>
             <h1>About</h1>
-            <p>name {a.state.name} and his email is {a.state.email}</p>
+            <p>name {a.state.name} and his email  {a.state.email}</p>
         </div>
     )
 }
