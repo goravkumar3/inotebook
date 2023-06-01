@@ -2,21 +2,24 @@ import {useState} from "react";
 import NoteContext from "./noteContext";
 
 const NoteState=(props)=>{
-    const s={
-        "name":"Gorav",
-        "email":"kg558390@gmail.com"
-    }
-    const [state,setState]=useState(s)
-    const update=()=>{
-        setTimeout(() => {
-            setState({
-                "name":"Akasha",
-                "email":"ak23@gmail.com"
-            })
-        }, 3000);
+    const s=[]
+    const host="http://127.0.0.1:5000"
+    const [note,setNote]=useState(s)
+    const get=async ()=>{
+        const response = await fetch(`${host}/api/notes/fetchNotes`, {
+            method: "GET", // *GET, POST, PUT, DELETE, etc.
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ2YjY0ZTk2YzEzYzIyNzFiNWQ0Y2FmIn0sImlhdCI6MTY4NDc1OTg4MX0.GIg2Jd9MOR_gbI-c713mbeQR3ik1sZUuKKNbL4odkNg"
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            }, // body data type must match "Content-Type" header
+          });
+          const json=await response.json();
+          console.log(json)
+          setNote(json)
     }
     return(
-        <NoteContext.Provider value={{state,update}}>
+        <NoteContext.Provider value={{note,get}}>
             {props.children}
         </NoteContext.Provider>
     )

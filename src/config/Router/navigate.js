@@ -1,12 +1,12 @@
 import React from "react";
-import { Route,BrowserRouter,Routes,useLocation } from "react-router-dom";
+import { Route,BrowserRouter,Routes} from "react-router-dom";
 import { SignUp,Login,Notes,About } from "../../component/pages";
 
 const Navigate=()=>{
-      const loction=useLocation()
+      // const loction=useLocation()
       return(
       <BrowserRouter>
-      <Routes location={loction} key={loction.pathname}>
+      <Routes >
          <Route path="/" element={<SignUp/>} />
          <Route path="/login" element={<Login/>} />
          <Route path="/notes" element={<Notes/>} />
