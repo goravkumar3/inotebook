@@ -18,8 +18,22 @@ const NoteState=(props)=>{
           console.log(json)
           setNote(json)
     }
+    const addNote=(title,description,tag)=>{
+        const response = await fetch(`${host}/api/notes/addNotes`, {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ2YjY0ZTk2YzEzYzIyNzFiNWQ0Y2FmIn0sImlhdCI6MTY4NDc1OTg4MX0.GIg2Jd9MOR_gbI-c713mbeQR3ik1sZUuKKNbL4odkNg"
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },, // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify({title,description,tag}), // body data type must match "Content-Type" header
+          });
+          const json=response.json();
+          console.log("add data")
+          console.log(json)
+    }
     return(
-        <NoteContext.Provider value={{note,get}}>
+        <NoteContext.Provider value={{note,get,addNote}}>
             {props.children}
         </NoteContext.Provider>
     )
