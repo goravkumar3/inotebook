@@ -1,6 +1,7 @@
 import React from "react";
 const GetNotes=(props)=>{
     const {note,deleteNote,updatenote}=props
+    console.log(note._id)
     return(
         <>
        <h1>{note.title}</h1>
